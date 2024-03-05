@@ -18,7 +18,7 @@
   <div><h2 data-text="2025">2025</h2></div>
   <div><h2 data-text="2026">2026</h2></div>
   <section>
-    <p>Thank.</p>
+    <p>Thanks.</p>
   </section>
   <script>
     function reveal(){
@@ -26,12 +26,12 @@
       for(var i = 0; i < item.length; i++){
         let windowHeight = window.innerHeight;
         let elementTop = item[i].getBoundingClientRect().top;
-        let elementVisable = 300;
+        let elementVisible = 300;
 
-        if (elementTop < windowHeight - elementVisable){
+        if (elementTop < windowHeight - elementVisible){
           item[i].classList.add("active");
         }else{
-          itemt[i].classList.remove("active");
+          item[i].classList.remove("active");
         }
       }
     }

@@ -40,7 +40,7 @@ h2::before{
   color: #fff;
   transition: 1s all ease;
 }
-h2 .active:before{
+h2.active:before{
   width: 100%;
 }
 .current h2::before{
