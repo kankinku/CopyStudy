@@ -7,14 +7,16 @@
 section{
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  width: 80%;
-  height: 60%;
+  width: 1360px;
+  height: 780px;
 }
 section div{
   width: 10%;
   height: 100%;
   filter: grayscale(50);
+  transition: .5s;
 }
 
 .starroad{
@@ -41,4 +43,9 @@ section div{
   background: url("./img/mantis.jpg");
   background-size: cover;
   background-position: center;
+}
+
+section div:hover {
+  width: 30%;
+  filter: grayscale(0);
 }
