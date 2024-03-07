@@ -8,6 +8,7 @@
 </head>
 <body>
   <section>
+    <p class="mainposter"></p>
     <div class="starroad"></div>
     <div class="rocket"></div>
     <div class="groot"></div>
@@ -15,4 +16,11 @@
     <div class="mantis"></div>
   </section>
 </body>
+<script>
+  let mainposter = document.querySelector(".mainposter");
+  mainposter.addEventListener('click', () => {
+    mainposter.style.display = "none"
+  })
+</script>
+
 </html>

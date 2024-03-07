@@ -5,10 +5,11 @@
   height: 100%;
 }
 section{
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 0 auto;
+  margin-top: 10%;
   width: 1360px;
   height: 780px;
 }
@@ -17,6 +18,15 @@ section div{
   height: 100%;
   filter: grayscale(50);
   transition: .5s;
+}
+.mainposter{
+  position: absolute;
+  background: url("./img/main.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 8;
+  width: 50%;
 }
 
 .starroad{
