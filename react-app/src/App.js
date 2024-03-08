@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 //props를 통해서 데이터를 입력 받고 그 데이터의 새부값을 .title같은 형태를 통해서 
 //입력받는다.
@@ -12,7 +12,6 @@ function Article(props){
 
 //사용자 정의 태그
 function Header(props){
-    console.log('props : ', props , props.title);
     // 사용자 정의 태그는 반듯이 대문자로 시작해야 한다.
     // 사용자 정의 태그가 아닌 = 컴포넌트라고 명명한다.
     return<header>
@@ -27,8 +26,10 @@ function Nav(props){
   const lis = []
   for(let i = 0; i<props.topics.length; i++){
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href={'/read/'+t.id} onClick={(event) => {
-      props.onChangeMode(t.id);
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/'+t.id} onClick={(event) => {
+      event.preventDefault();
+      props.onChangeMode(Number(event.target.id));
     }}>{t.title}</a></li>)
   }
   return<nav>
@@ -39,22 +40,47 @@ function Nav(props){
 }
 
 function App() { 
+  // const _mode = useState('WELCOME');
+  // console.log(_mode); // useState의 초기값
+  // const mode = _mode[0]; // useState의 0번째 데이터는 상태의 값을 읽는것
+  // const setMode = _mode[1]; // useState의 1번째 데이터는 상태의 값을 변경할때 사용하는 함수
+
+  const [mode, setMode] = useState('WELCOME');
+  const [id, setId] = useState(null);
   const topics = [
     {id:1,title:'html',body:'html is ...'},
     {id:2,title:'css',body:'css is ...'},
     {id:3,title:'javascript',body:'javascript is ...'}
   ]
+
+  let content = null;
+  if(mode === 'WELCOME'){
+    content = <Article title='Welcome' body="Hello, Web"></Article>
+  }else if(mode === 'READ'){
+    let title, body = null;
+    for(let i =0; i<topics.length; i++){
+      console.log(topics[i].id, id);
+      if(topics[i].id === id){
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>
+  }
   return (
     <div>
       <Header title="Web" onChangeMode={() => {
-        alert('Header');
+        setMode('WELCOME');
       }}></Header>
-      <Nav topics={topics} onChangeMode={(id)=>{
-        alert(id);
+      <Nav topics={topics} onChangeMode={(_id)=>{
+        setMode('READ');
+        setId(_id);
       }}></Nav>
-      <Article title="Welcome" body="Hello, Web"></Article>
+      {content}
     </div>
   );
 }
+// 저장을 바꿔도 app이 다시 실행하지 않기 때문에 값이 변하지 않는다.
+// 
 
 export default App;
