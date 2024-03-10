@@ -6,8 +6,8 @@ import { useState } from 'react';
 function Article(props){
   return<article>
         <h2>{props.title}</h2>
-        {props.body}
-      </article>
+        {props.body} 
+      </article> 
 }
 
 //사용자 정의 태그
